@@ -1,0 +1,68 @@
+name: CI - Multi Project Pipeline
+
+on:
+  pull_request:
+    branches: 
+      - master
+
+
+permissions:
+  actions: write
+  contents: write
+  security-events: write
+  issues: write
+##aaasasdasdsa
+jobs:
+  pr-pipeline:
+    uses: PruebaActions/WorkFlows-Templates/.github/workflows/artifact.yaml@main
+    with:
+      project_path: "./YukaWebApi/YukaWebApi.csproj"
+      solution_path: "./YukaWebApi/YukaWebApi.csproj"
+      project_type: "dotnet"
+      #     project_paths: |
+      #   [
+      #     { "path": "./DescopeSampleApp.sln", "isFramework": "true", "language": "csharp" }
+      #   ]
+      # test_paths: '[]'
+      # codeql_languages: 'csharp'
+      # solution_path_codeql: './DescopeSampleApp.sln'
+      # solution_isFramework_codeql: 'true'
+      # docker_targets: |
+      #   [
+      #     {
+      #       "image_name": "descopesampleapp-pr",
+      #       "container_name": "descopesampleapp-pr-container",
+      #       "dockerfile": "./DescopeSampleApp/Dockerfile",
+      #       "container_port": "80",
+      #       "isFramework": "true"
+      #     }
+      #   ]
+
+
+
+
+# name: Pull Request Pipeline
+
+# on:
+#   pull_request:
+#     branches:
+#       - master
+
+
+# permissions:
+#   actions: read
+#   contents: read
+#   security-events: write
+#   issues: write
+
+# jobs:
+#   pr-pipeline:
+#     uses: PruebaActions/WorkFlows-Templates/.github/workflows/pr-dotnet-codeql.yaml@main
+#     with:
+#       image_name: descopesampleapp-pr
+#       container_name: descopesampleapp-pr-container
+#       dockerfile: ./DescopeSampleApp/Dockerfile              # El Dockerfile está en la raíz del proyecto                    # Puerto en la máquina host
+#       container_port: '80'                  # IIS dentro del contenedor suele usar el 80
+#       #codeql_languages: 'csharp'
+#       project_paths: '["./DescopeSampleApp.sln"]'
+#       has_tests: false                      # ponlo en true si luego agregas un proyecto de pruebas
